@@ -1,0 +1,5 @@
+[user]
+    name = YongSeong Kim
+    email = kys911015@gmail.com
+[core]
+	excludesfile = /Users/yongseongkim/dotfiles/bin/.gitignore_global

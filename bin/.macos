@@ -1,0 +1,47 @@
+# Use dark menu bar and dock
+defaults write ~/Library/Preferences/.GlobalPreferences.plist AppleInterfaceTheme -string "Dark"
+defaults write ~/Library/Preferences/.GlobalPreferences.plist AppleInterfaceStyle -string "Dark"
+
+# Always show scrollbars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
+# Disable automatic termination of inactive apps
+defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
+
+# Trackpad: enable tap to click for this user and for the login screen
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+
+# Muse
+defaults write -g com.apple.mouse.scaling 5
+
+# lower numbers are faster
+defaults write NSGlobalDomain KeyRepeat -int 1
+
+defaults write com.apple.menuextra.battery ShowPercent -bool true
+
+defaults write -g AppleLanguages -array en ko
+
+# Dock
+defaults write com.apple.dock tilesize -int 48
+defaults write com.apple.dock magnification -boolean NO
+defaults write com.apple.dock orientation -string bottom
+defaults write com.apple.dock mineffect -string "scale"
+defaults write ~/Library/Preferences/.GlobalPreferences.plist AppleWindowTabbingMode -string "In Full Screen Only"
+defaults write ~/Library/Preferences/.GlobalPreferences.plist AppleActionOnDoubleClick -string "Zoom"
+defaults write com.apple.dock minimize-to-application -bool false
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock show-process-indicators -bool true
+defaults write com.Apple.Dock show-recents -bool false
+
+# Dock icons array
+defaults write com.apple.dock persistent-apps -array
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Iterm.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Google Chrome.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Xcode.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Visual Studio Code.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Sourcetree.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Notion.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/1Password 7.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+
