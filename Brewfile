@@ -11,6 +11,7 @@ brew 'pyenv'
 brew 'pyenv-virtualenv'
 brew 'rbenv'
 brew 'ruby-build'
+brew 'swiftlint'
 brew 'wget'
 
 # Applications
@@ -24,4 +25,5 @@ cask 'notion'
 cask 'slack'
 cask 'sourcetree'
 cask 'visual-studio-code'
+cask 'xcodegen'
 

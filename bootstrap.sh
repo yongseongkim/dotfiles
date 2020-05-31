@@ -38,10 +38,11 @@ mv agnoster.zsh-theme ~/.oh-my-zsh/custom/themes
 source $HOME/.zshrc
 
 echo '##########################################################################'
-echo '############## Installing Python, Ruby environment manager...'
+echo '############## Installing environments.'
 echo '##########################################################################'
 pyenv install 3.7.0
 rbenv install 2.6.5
+gem install cocoapods 
 
 echo '##########################################################################'
 echo '############## Installing MacOS preferences...'
