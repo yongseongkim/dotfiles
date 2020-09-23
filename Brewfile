@@ -11,8 +11,9 @@ brew 'pyenv'
 brew 'pyenv-virtualenv'
 brew 'rbenv'
 brew 'ruby-build'
-brew 'swiftlint'
 brew 'wget'
+brew 'swiftlint'
+brew 'fastlane'
 
 # Applications
 cask_args appdir: '/Applications'
