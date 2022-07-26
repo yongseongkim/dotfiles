@@ -1,22 +1,32 @@
 # dotfiles/Brewfile
+tap "adoptopenjdk/openjdk"
+tap "clojure/tools"
+tap "facebook/fb"
+tap "homebrew/cask"
 
-# Taps
-# tap 'homebrew/cask-cask'
-
-# Binaries/Libraries
-# brew 'zsh'
-# brew 'git'
-brew 'chisel'
-brew 'fastlane'
+brew "cask"
+brew 'wget'
+brew 'fzf'
+brew 'gh'
 brew 'git-lfs'
+brew 'gradle'
+brew 'protobuf'
+brew 'lazygit'
+brew 'tmux'
+# Languages
+brew 'clojure/tools/clojure'
 brew 'pyenv'
 brew 'pyenv-virtualenv'
 brew 'rbenv'
 brew 'ruby-build'
-brew 'swiftlint'
-brew 'wget'
+brew 'jenv'
+brew 'node'
+# iOS
+brew 'chisel'
 brew 'xcodegen'
-brew 'protobuf'
+brew 'fastlane'
+brew 'swiftlint'
+berw 'xcodegen'
 
 # Applications
 cask_args appdir: '/Applications'
@@ -24,8 +34,8 @@ cask '1password'
 cask 'alfred'
 cask 'android-studio'
 cask 'google-chrome'
-cask 'iterm2'
 cask 'notion'
 cask 'slack'
-cask 'sourcetree'
 cask 'visual-studio-code'
+cask 'adoptopenjdk8'
+cask 'adoptopenjdk11'

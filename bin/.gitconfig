@@ -1,11 +1,11 @@
 [user]
-    name = YongSeong Kim
-    email = kys911015@gmail.com
+    name = yongseongkim
+    email = yongseongkimm@gmail.com
 [core]
 	excludesfile = /Users/yongseongkim/dotfiles/bin/.gitignore_global
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
