@@ -7,7 +7,7 @@ echo '##########################################################################
 echo '############## Installing Brew and packages...'
 echo '##########################################################################'
 if test ! $(which brew); then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 brew update
@@ -23,11 +23,11 @@ cp $HOME/dotfiles/bin/.zshrc $HOME/.zshrc
 
 source $HOME/.zshrc
 
-pyenv install 3.7.0
-rbenv install 2.6.5
+pyenv install 3.9.11
+rbenv install 2.7.2
 gem install cocoapods
 jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
-jenv add /Librard/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
 
 echo '##########################################################################'
 echo '############## Installing MacOS preferences...'

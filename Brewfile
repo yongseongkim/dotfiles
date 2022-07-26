@@ -26,7 +26,7 @@ brew 'chisel'
 brew 'xcodegen'
 brew 'fastlane'
 brew 'swiftlint'
-berw 'xcodegen'
+brew 'xcodegen'
 
 # Applications
 cask_args appdir: '/Applications'

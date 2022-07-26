@@ -25,6 +25,22 @@ defaults write com.apple.dock show-process-indicators -bool true
 defaults write com.Apple.Dock show-recents -bool false
 
 # Dock icons array
-for dockItem in {/Applications/{"Google Chrome", "Xcode", "Android Studio", "IntelliJ IDEA CE", "Visual Studio Code", "Slack", "Notion", "Spotify"}}.app; do
-  defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>'$dockItem'</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
-done
+# for dockItem in {/Applications/{"Google Chrome", "Xcode", "Android Studio", "IntelliJ IDEA CE", "Visual Studio Code", "Slack", "Notion", "Spotify"}}.app; do
+
+dock_item() {
+    printf '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>%s</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>', "$1"
+}
+
+defaults write com.apple.dock persistent-apps -array \
+    "$(dock_item /Applications/Google\ Chrome.app)" \
+    "$(dock_item /System/Applications/Utilities/Terminal.app)" \
+    "$(dock_item /Applications/Xcode.app)" \
+    "$(dock_item /Applications/Android\ Studio.app)" \
+    "$(dock_item /Applications/IntelliJ\ IDEA\ CE.app)" \
+    "$(dock_item /Applications/Visual\ Studio\ Code.app)" \
+    "$(dock_item /Applications/Slack.app)" \ 
+    "$(dock_item /Applications/Notion.app)" \
+    "$(dock_item /Applications/Spotify.app)" \
+    "$(dock_item /Applications/Calendar.app)" 
+
+killall Dock
