@@ -18,8 +18,15 @@ brew cleanup
 [ ! -f $HOME/.gitconfig ] && ln -nfs $HOME/dotfiles/bin/.gitconfig $HOME/.gitconfig
 git config --global core.excludesfile $HOME/dotfiles/bin/.gitignore_global
 
-wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 cp $HOME/dotfiles/bin/.zshrc $HOME/.zshrc
+
+# install pwerline fonts
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
+cd ..
+rm -rf fonts
 
 source $HOME/.zshrc
 

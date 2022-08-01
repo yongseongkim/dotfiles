@@ -1,20 +1,19 @@
-export ZSH="/Users/yongseongkim/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="agnoster""
 
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
 export PATH=/opt/homebrew/bin:$PATH
-
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
-
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 export PYENV_VERSION=3.9.11
-
 eval "$(rbenv init -)"
-export RBENV_VERSION=2.7.2
+export RBENV_VERSION=2.6.10
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -29,3 +28,4 @@ lg()
             rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
     fi
 }
+
