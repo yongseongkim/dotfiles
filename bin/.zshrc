@@ -1,4 +1,6 @@
-export ZSH="/Users/yongseongkim/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="agnoster""
 
 plugins=(git)
 
@@ -7,15 +9,14 @@ autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
+export PATH=/opt/homebrew/bin:$PATH
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
-
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-export PYENV_VERSION=3.7.0
-
+export PYENV_VERSION=3.9.11
 eval "$(rbenv init -)"
-export RBENV_VERSION=2.6.4
+export RBENV_VERSION=2.6.10
 
 alias adbshot="adb shell screencap -p | perl -pe 's/\x0D\x0D\x0A/\x0A/g' > screen.png
 export ADB_HOME=/Users/yongseongkim/Library/Android/sdk/platform-tools
