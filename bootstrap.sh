@@ -19,9 +19,13 @@ brew cleanup
 git config --global core.excludesfile $HOME/dotfiles/bin/.gitignore_global
 
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+
+# Install zsh plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 cp $HOME/dotfiles/bin/.zshrc $HOME/.zshrc
 
-# install pwerline fonts
+# install powerline fonts
 git clone https://github.com/powerline/fonts.git --depth=1
 cd fonts
 ./install.sh
@@ -31,7 +35,7 @@ rm -rf fonts
 source $HOME/.zshrc
 
 pyenv install 3.9.11
-rbenv install 2.7.2
+rbenv install 2.6.10
 gem install cocoapods
 jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
