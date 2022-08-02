@@ -2,6 +2,9 @@ export ZSH="/Users/yongseongkim/.oh-my-zsh"
 
 plugins=(git)
 
+plugins=(… zsh-completions)
+autoload -U compinit && compinit
+
 source $ZSH/oh-my-zsh.sh
 
 export PATH="$HOME/.jenv/bin:$PATH"
@@ -13,6 +16,12 @@ export PYENV_VERSION=3.7.0
 
 eval "$(rbenv init -)"
 export RBENV_VERSION=2.6.4
+
+alias adbshot="adb shell screencap -p | perl -pe 's/\x0D\x0D\x0A/\x0A/g' > screen.png
+export ADB_HOME=/Users/yongseongkim/Library/Android/sdk/platform-tools
+export PATH=${ADB_HOME}:$PATH
+export VCNC_TADA_SERVER_DIR_FOR_PROTOCOL=/Users/yongseongkim/Documents/workspace.nosync/tada-server
+export VCNC_DESIGN_TADA_PATH=/Users/yongseongkim/Google\ Drive/Shared\ drives/VCNC/Product\ Design팀/Development\ UI\ Assets/
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -27,3 +36,4 @@ lg()
             rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
     fi
 }
+
