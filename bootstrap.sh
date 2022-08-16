@@ -24,7 +24,11 @@ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O 
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 cp $HOME/dotfiles/bin/.zshrc $HOME/.zshrc
+
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cp $HOME/dotfiles/bin/.vimrc $HOME/.vimrc
+
+cp $HOME/dotfiles/bin/.tmux.conf $HOME/.tmux.conf
 
 # install powerline fonts
 git clone https://github.com/powerline/fonts.git --depth=1
