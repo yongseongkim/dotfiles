@@ -27,6 +27,7 @@ cp $HOME/dotfiles/bin/.zshrc $HOME/.zshrc
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cp $HOME/dotfiles/bin/.vimrc $HOME/.vimrc
+cp ./coc-settings.json $HOME/.vim/coc-settings.json
 
 cp $HOME/dotfiles/bin/.tmux.conf $HOME/.tmux.conf
 
