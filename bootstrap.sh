@@ -40,6 +40,12 @@ rm -rf fonts
 
 source $HOME/.zshrc
 
+# Install language tools
+
+## Rust
+curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
+curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-aarch64-apple-darwin.gz | gunzip -c - > ~/.cargo/bin/rust-analyzer
+
 pyenv install 3.9.11
 rbenv install 2.6.10
 gem install cocoapods
