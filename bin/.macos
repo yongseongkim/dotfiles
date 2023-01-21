@@ -9,6 +9,8 @@ defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 
 # lower numbers are faster
 defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 defaults write -g AppleLanguages -array en ko
 

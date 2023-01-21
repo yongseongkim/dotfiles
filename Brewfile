@@ -26,7 +26,6 @@ brew 'chisel'
 brew 'xcodegen'
 brew 'fastlane'
 brew 'swiftlint'
-brew 'xcodegen'
 
 # Applications
 cask_args appdir: '/Applications'
@@ -41,3 +40,4 @@ cask 'slack'
 cask 'spotify'
 cask 'adoptopenjdk8'
 cask 'adoptopenjdk11'
+
