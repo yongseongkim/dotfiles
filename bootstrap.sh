@@ -19,21 +19,20 @@ git config --global core.excludesfile $HOME/dotfiles/bin/.gitignore_global
 
 # Install zsh plugins
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-cp $HOME/dotfiles/bin/.zshrc $HOME/.zshrc
+source $HOME/.zshrc
 
 # Install Vim configurations
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 cp $HOME/dotfiles/bin/.vimrc $HOME/.vimrc
-source $HOME/.vimrc
+vim +'PlugInstall --sync' +qa
 
 ## coc.nvim
 cp ./coc-settings.json $HOME/.vim/coc-settings.json
-vim -c 'CocInstall -sync coc-json coc-html coc-sh |q'
+vim +'CocInstall -sync coc-json coc-html coc-sh' +qa
 
-# Install powerline fonts
+# Install powerline fonts - Use Dejavu Sans Mono for Powerline
 git clone https://github.com/powerline/fonts.git --depth=1
 cd fonts
 ./install.sh
@@ -41,7 +40,7 @@ cd ..
 rm -rf fonts
 
 cp $HOME/dotfiles/bin/.tmux.conf $HOME/.tmux.conf
-
+cp $HOME/dotfiles/bin/.zshrc $HOME/.zshrc
 source $HOME/.zshrc
 
 # Install language tools

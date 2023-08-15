@@ -2,7 +2,6 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="agnoster"
 
-plugins=(git zsh-autosuggestions)
 autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
@@ -19,6 +18,10 @@ export PYENV_VERSION=3.9.11
 
 eval "$(rbenv init -)"
 export RBENV_VERSION=2.6.10
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 alias adbshot="adb shell screencap -p | perl -pe 's/\x0D\x0D\x0A/\x0A/g' > screen.png"
 export ADB_HOME=/Users/yongseongkim/Library/Android/sdk/platform-tools
