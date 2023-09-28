@@ -52,11 +52,13 @@ chmod +x ~/.cago/bin/rust-analyzer
 
 ## Python
 pyenv install 3.9.11
-## Ruby
-rbenv install 2.6.10
-## Java
-jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
-jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+
+asdf plugin add java
+asdf install java latest:adoptopenjdk-11
+asdf install java latest:adoptopenjdk-17
+asdf plugin add ruby
+asdf plugin add nodejs
+asdf install nodejs latest:16
 
 # Install iOS Requirements
 gem install cocoapods
