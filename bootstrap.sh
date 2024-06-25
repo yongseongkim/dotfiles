@@ -13,6 +13,9 @@ brew tap homebrew/bundle
 brew bundle --file=$HOME/dotfiles/Brewfile
 brew cleanup
 
+# Install zsh theme
+echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
+
 # Set Git Configurations
 [ ! -f $HOME/.gitconfig ] && ln -nfs $HOME/dotfiles/bin/.gitconfig $HOME/.gitconfig
 git config --global core.excludesfile $HOME/dotfiles/bin/.gitignore_global

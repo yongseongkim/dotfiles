@@ -1,7 +1,4 @@
 # dotfiles/Brewfile
-tap "adoptopenjdk/openjdk"
-tap "clojure/tools"
-tap "facebook/fb"
 tap "homebrew/cask"
 
 brew "cask"
@@ -13,18 +10,8 @@ brew 'gradle'
 brew 'protobuf'
 brew 'lazygit'
 brew 'tmux'
-brew 'pre-commit'
 brew 'asdf'
-# Languages
-brew 'pyenv'
-brew 'pyenv-virtualenv'
-brew 'ruby-build'
-brew 'node'
-# iOS
-brew 'chisel'
-brew 'xcodegen'
-brew 'fastlane'
-brew 'swiftlint'
+brew 'powerlevel10k'
 
 # Applications
 cask_args appdir: '/Applications'
