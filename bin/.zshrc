@@ -1,21 +1,17 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="agnoster"
-
 autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
 export PATH=/opt/homebrew/bin:$PATH
 
-# Language tools
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-export PYENV_VERSION=3.9.11
+eval "$(zoxide init zsh)"
 
-alias adbshot="adb shell screencap -p | perl -pe 's/\x0D\x0D\x0A/\x0A/g' > screen.png"
-export ADB_HOME=/Users/yongseongkim/Library/Android/sdk/platform-tools
-export PATH=${ADB_HOME}:$PATH
+# Android
+# export ANDROID_HOME=$HOME/Library/Android/sdk
+# export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
+# alias adbshot="adb shell screencap -p | perl -pe 's/\x0D\x0D\x0A/\x0A/g' > screen.png"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -33,7 +29,6 @@ lg()
 
 if [ "$TMUX" = "" ]; then tmux; fi
 
-# VCNC
-export VCNC_TADA_SERVER_DIR_FOR_PROTOCOL=/Users/yongseongkim/Documents/workspace.nosync/tada-server
-export VCNC_DESIGN_TADA_PATH=/Users/yongseongkim/Google\ Drive/Shared\ drives/VCNC/Product\ Design팀/Development\ UI\ Assets/
+
+alias disktop10="du -shx * | sort -rh | head -10"
 
