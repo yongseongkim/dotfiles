@@ -14,7 +14,8 @@ brew bundle --file=$HOME/dotfiles/Brewfile
 brew cleanup
 
 # Install zsh theme
-echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
+# source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+# echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
 
 # Set Git Configurations
 [ ! -f $HOME/.gitconfig ] && ln -nfs $HOME/dotfiles/bin/.gitconfig $HOME/.gitconfig
@@ -22,8 +23,6 @@ git config --global core.excludesfile $HOME/dotfiles/bin/.gitignore_global
 
 # Install zsh plugins
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-
-source $HOME/.zshrc
 
 # Install Vim configurations
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -34,13 +33,6 @@ vim +'PlugInstall --sync' +qa
 ## coc.nvim
 cp ./coc-settings.json $HOME/.vim/coc-settings.json
 vim +'CocInstall -sync coc-json coc-html coc-sh' +qa
-
-# Install powerline fonts - Use Dejavu Sans Mono for Powerline
-git clone https://github.com/powerline/fonts.git --depth=1
-cd fonts
-./install.sh
-cd ..
-rm -rf fonts
 
 cp $HOME/dotfiles/bin/.tmux.conf $HOME/.tmux.conf
 cp $HOME/dotfiles/bin/.zshrc $HOME/.zshrc
@@ -53,15 +45,12 @@ curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
 curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-aarch64-apple-darwin.gz | gunzip -c - > ~/.cargo/bin/rust-analyzer
 chmod +x ~/.cago/bin/rust-analyzer
 
-## Python
-pyenv install 3.9.11
-
 asdf plugin add java
 asdf install java latest:adoptopenjdk-11
 asdf install java latest:adoptopenjdk-17
 asdf plugin add ruby
 asdf plugin add nodejs
-asdf install nodejs latest:16
+asdf install nodejs latest:18
 
 # Install iOS Requirements
 gem install cocoapods
