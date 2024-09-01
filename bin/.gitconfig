@@ -13,4 +13,16 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
-	required = true
+    required = true
+[alias]
+    ch = "!git checkout $(git bselect)"
+    bselect = "! # select branch with preview; \n\
+        f() { \
+            _height=$(stty size | awk '{print $1}');\
+            git branch | egrep -v '^\\*' | fzf --preview \"git l {1} | head -n $_height\"; \
+        }; f"
+    a = "! # add files with fzf preview diffs; \n\
+        f() { \
+            _height=$(stty size | awk '{print $1}');\
+            git s | fzf -m --preview \"git diff {2} | head -n $_height | pygmentize\" | awk '{print $2}' | xargs git add; \
+        }; f"
