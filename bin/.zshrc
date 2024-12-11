@@ -32,3 +32,6 @@ if [ "$TMUX" = "" ]; then tmux; fi
 
 alias disktop10="du -shx * | sort -rh | head -10"
 
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+

@@ -32,7 +32,6 @@ vim +'PlugInstall --sync' +qa
 
 ## coc.nvim
 cp ./coc-settings.json $HOME/.vim/coc-settings.json
-vim +'CocInstall -sync coc-json coc-html coc-sh' +qa
 
 cp $HOME/dotfiles/bin/.tmux.conf $HOME/.tmux.conf
 cp $HOME/dotfiles/bin/.zshrc $HOME/.zshrc
@@ -41,20 +40,10 @@ source $HOME/.zshrc
 # Install language tools
 
 ## Rust
-curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
-curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-aarch64-apple-darwin.gz | gunzip -c - > ~/.cargo/bin/rust-analyzer
-chmod +x ~/.cago/bin/rust-analyzer
+# curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
+# curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-aarch64-apple-darwin.gz | gunzip -c - > ~/.cargo/bin/rust-analyzer
+# chmod +x ~/.cago/bin/rust-analyzer
 
-asdf plugin add java
-asdf install java latest:adoptopenjdk-11
-asdf install java latest:adoptopenjdk-17
-asdf plugin add ruby
 asdf plugin add nodejs
 asdf install nodejs latest:18
-
-# Install iOS Requirements
-gem install cocoapods
-
-# Set MacOS Preference
-source $HOME/dotfiles/bin/.macos
 
