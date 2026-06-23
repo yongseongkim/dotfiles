@@ -33,5 +33,6 @@ if [ "$TMUX" = "" ]; then tmux; fi
 alias disktop10="du -shx * | sort -rh | head -10"
 
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+# asdf 0.16+ (Go rewrite): no asdf.sh anymore, just add shims to PATH
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 

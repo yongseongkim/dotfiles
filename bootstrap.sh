@@ -1,49 +1,62 @@
 #!/bin/sh
 
-# Install Command Line Tools
-xcode-select --install
+set -e
 
-# Install Brew and packages
-if test ! $(which brew); then
+DOTFILES="$HOME/dotfiles"
+
+# Install Command Line Tools (wait until it actually finishes)
+if ! xcode-select -p >/dev/null 2>&1; then
+	xcode-select --install
+	echo "Complete the Command Line Tools installation in the dialog..."
+	until xcode-select -p >/dev/null 2>&1; do sleep 5; done
+fi
+
+# Install Homebrew
+if ! command -v brew >/dev/null 2>&1; then
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+# Load brew into the current shell (so the rest of the script can use it)
+if [ -x /opt/homebrew/bin/brew ]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+	eval "$(/usr/local/bin/brew shellenv)"
+fi
+
 brew update
-brew tap homebrew/bundle
-brew bundle --file=$HOME/dotfiles/Brewfile
+brew bundle --file="$DOTFILES/Brewfile"
 brew cleanup
 
-# Install zsh theme
-# source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
-# echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
+# Install oh-my-zsh (unattended: don't switch shell, don't start zsh, keep our .zshrc)
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+	RUNZSH=no CHSH=no KEEP_ZSHRC=yes \
+		sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
-# Set Git Configurations
-[ ! -f $HOME/.gitconfig ] && ln -nfs $HOME/dotfiles/bin/.gitconfig $HOME/.gitconfig
-git config --global core.excludesfile $HOME/dotfiles/bin/.gitignore_global
+# Symlink dotfiles (edits in the repo stay live, and live edits get tracked)
+ln -nfs "$DOTFILES/bin/.gitconfig"  "$HOME/.gitconfig"
+ln -nfs "$DOTFILES/bin/.zshrc"      "$HOME/.zshrc"
+ln -nfs "$DOTFILES/bin/.tmux.conf"  "$HOME/.tmux.conf"
+ln -nfs "$DOTFILES/bin/.vimrc"      "$HOME/.vimrc"
+ln -nfs "$DOTFILES/bin/.ideavimrc"  "$HOME/.ideavimrc"
+git config --global core.excludesfile "$DOTFILES/bin/.gitignore_global"
 
-# Install zsh plugins
-sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-
-# Install Vim configurations
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-cp $HOME/dotfiles/bin/.vimrc $HOME/.vimrc
+# Vim: plugin manager + plugins + coc settings
+curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
+	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+ln -nfs "$DOTFILES/coc-settings.json" "$HOME/.vim/coc-settings.json"
 vim +'PlugInstall --sync' +qa
 
-## coc.nvim
-cp ./coc-settings.json $HOME/.vim/coc-settings.json
+# Install fonts
+mkdir -p "$HOME/Library/Fonts"
+cp "$DOTFILES"/fonts/*.ttc "$HOME/Library/Fonts/"
 
-cp $HOME/dotfiles/bin/.tmux.conf $HOME/.tmux.conf
-cp $HOME/dotfiles/bin/.zshrc $HOME/.zshrc
-source $HOME/.zshrc
-
-# Install language tools
-
-## Rust
-# curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
-# curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-aarch64-apple-darwin.gz | gunzip -c - > ~/.cargo/bin/rust-analyzer
-# chmod +x ~/.cago/bin/rust-analyzer
-
-asdf plugin add nodejs
+# Node via asdf
+asdf plugin add nodejs || true
 asdf install nodejs latest:18
+asdf set -u nodejs "$(asdf latest nodejs 18)"
 
+# macOS system preferences (keyboard, trackpad, dock, typing)
+sh "$DOTFILES/macos.sh"
+
+echo "Done. Open a new terminal (or run: exec zsh) to load your shell."

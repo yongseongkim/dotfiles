@@ -1,7 +1,4 @@
 # dotfiles/Brewfile
-tap "homebrew/cask"
-
-brew "cask"
 brew 'wget'
 brew 'fzf'
 brew 'gh'
@@ -22,9 +19,12 @@ cask 'jetbrains-toolbox'
 cask 'visual-studio-code'
 cask 'dbeaver-community'
 cask 'docker'
-cask 'notion'
 cask 'notion-calendar'
 cask 'slack'
 cask 'raycast'
 cask 'alt-tab'
+
+# AI coding agents
+cask 'claude-code'
+cask 'codex'
 
