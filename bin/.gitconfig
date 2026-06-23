@@ -26,3 +26,5 @@
             _height=$(stty size | awk '{print $1}');\
             git s | fzf -m --preview \"git diff {2} | head -n $_height | pygmentize\" | awk '{print $2}' | xargs git add; \
         }; f"
+[maintenance]
+	repo = /Users/yongseongkim/Documents/workspace.nosync/tada-server
