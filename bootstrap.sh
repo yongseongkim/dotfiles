@@ -36,10 +36,15 @@ fi
 # Symlink dotfiles (edits in the repo stay live, and live edits get tracked)
 ln -nfs "$DOTFILES/bin/.gitconfig"  "$HOME/.gitconfig"
 ln -nfs "$DOTFILES/bin/.zshrc"      "$HOME/.zshrc"
+ln -nfs "$DOTFILES/bin/.p10k.zsh"   "$HOME/.p10k.zsh"
 ln -nfs "$DOTFILES/bin/.tmux.conf"  "$HOME/.tmux.conf"
 ln -nfs "$DOTFILES/bin/.vimrc"      "$HOME/.vimrc"
 ln -nfs "$DOTFILES/bin/.ideavimrc"  "$HOME/.ideavimrc"
 git config --global core.excludesfile "$DOTFILES/bin/.gitignore_global"
+
+# Ghostty terminal config
+mkdir -p "$HOME/.config/ghostty"
+ln -nfs "$DOTFILES/ghostty/config" "$HOME/.config/ghostty/config"
 
 # Vim: plugin manager + plugins + coc settings
 curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \

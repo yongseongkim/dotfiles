@@ -1,19 +1,29 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-autoload -U compinit && compinit
+export LANG=ko_KR.UTF-8
+export LC_ALL=ko_KR.UTF-8
+
+# asdf 0.16+ (Go rewrite): no asdf.sh anymore — add shims + completions to PATH/fpath
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+
+autoload -Uz compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
 export PATH=/opt/homebrew/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
 
 eval "$(zoxide init zsh)"
 
-# Android
-# export ANDROID_HOME=$HOME/Library/Android/sdk
-# export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
-# alias adbshot="adb shell screencap -p | perl -pe 's/\x0D\x0D\x0A/\x0A/g' > screen.png"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Android SDK (only if installed)
+if [ -d "$HOME/Library/Android/sdk" ]; then
+    export ANDROID_HOME="$HOME/Library/Android/sdk"
+    export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
+    alias adbshot="adb shell screencap -p | perl -pe 's/\x0D\x0D\x0A/\x0A/g' > screen.png"
+fi
 
 lg()
 {
@@ -27,12 +37,20 @@ lg()
     fi
 }
 
-if [ "$TMUX" = "" ]; then tmux; fi
-
-
 alias disktop10="du -shx * | sort -rh | head -10"
+alias cl="claude"
+alias clz="claude --settings ~/.claude/settings-glm.json"
+alias csz="cs -p 'claude --settings ~/.claude/settings-glm.json'"
 
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# asdf 0.16+ (Go rewrite): no asdf.sh anymore, just add shims to PATH
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# fieldtheory-cli: point at the second-brain repo (only if it's checked out)
+if [ -d "$HOME/Documents/workspace.nosync/second-brain" ]; then
+    export FT_DATA_DIR="$HOME/Documents/workspace.nosync/second-brain/bookmarks"
+    export FT_LIBRARY_DIR="$HOME/Documents/workspace.nosync/second-brain/library"
+    export FT_COMMANDS_DIR="$HOME/Documents/workspace.nosync/second-brain/commands"
+fi
 
+if [ "$TMUX" = "" ]; then tmux; fi

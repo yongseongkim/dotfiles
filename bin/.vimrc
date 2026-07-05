@@ -3,7 +3,7 @@ set nocompatible
 call plug#begin()
 Plug 'easymotion/vim-easymotion'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 call plug#end()
 
 set encoding=utf-8
@@ -11,7 +11,7 @@ set encoding=utf-8
 set number
 set numberwidth=5
 set ruler
-set autoindent 
+set autoindent
 set expandtab " spaces are used for indenting lines
 set tabstop=4 " will insert 4 spaces for a line indent
 set shiftwidth=4 " the '>>' or '<<' operators to add or remove indentation
@@ -56,4 +56,3 @@ nmap <leader>f  <Plug>(coc-format-selected)
 nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
 xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
-

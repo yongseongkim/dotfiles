@@ -13,15 +13,16 @@ system preferences — all driven by `bootstrap.sh`.
    ~/dotfiles/bootstrap.sh
    ```
 4. Open a new terminal (or `exec zsh`) to load the shell.
-5. iTerm/Terminal → set the font to **Tab0 Mono K** and pick the Solarized Dark
-   color preset.
+5. Launch Ghostty — its config (font Tab0 Mono K) is symlinked from
+   [`ghostty/config`](ghostty/config), so no manual setup is needed.
 
 ## What bootstrap does
 
 - Installs Homebrew and everything in [`Brewfile`](Brewfile) via `brew bundle`.
 - Installs oh-my-zsh (unattended).
-- **Symlinks** the dotfiles in [`bin/`](bin) into `$HOME` (`.zshrc`,
-  `.gitconfig`, `.gitignore_global`, `.tmux.conf`, `.vimrc`, `.ideavimrc`).
+- Symlinks the dotfiles in [`bin/`](bin) into `$HOME` (`.zshrc`, `.p10k.zsh`,
+  `.gitconfig`, `.gitignore_global`, `.tmux.conf`, `.vimrc`, `.ideavimrc`) and
+  the Ghostty config into `~/.config/ghostty/config`.
 - Installs vim-plug, vim plugins, and coc.nvim settings.
 - Copies fonts from [`fonts/`](fonts) into `~/Library/Fonts`.
 - Installs Node via asdf.
@@ -35,6 +36,7 @@ system preferences — all driven by `bootstrap.sh`.
 | `macos.sh`          | macOS defaults: keyboard, trackpad, dock, typing.  |
 | `Brewfile`          | Homebrew formulae and casks.                        |
 | `coc-settings.json` | coc.nvim LSP configuration.                         |
+| `ghostty/`          | Ghostty terminal config (symlinked to `~/.config`).|
 | `fonts/`            | Vendored fonts.                                     |
 | `bin/`              | Dotfiles symlinked into `$HOME`.                    |
 

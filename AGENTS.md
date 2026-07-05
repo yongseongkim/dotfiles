@@ -4,9 +4,9 @@ Guidance for AI agents working in this repository.
 
 ## What this is
 
-Personal **macOS dotfiles** for a single user. `bootstrap.sh` sets up a fresh
+Personal macOS dotfiles for a single user. `bootstrap.sh` sets up a fresh
 Mac end to end: Homebrew packages, shell, vim, fonts, and system preferences.
-Target platform is **macOS on Apple Silicon** (Homebrew at `/opt/homebrew`).
+Target platform is macOS on Apple Silicon (Homebrew at `/opt/homebrew`).
 
 ## Layout
 
@@ -16,29 +16,30 @@ Target platform is **macOS on Apple Silicon** (Homebrew at `/opt/homebrew`).
 | `macos.sh`          | `defaults write` system prefs (keyboard, trackpad, dock, typing). Called by bootstrap; safe to re-run. |
 | `Brewfile`          | Homebrew formulae + casks (`brew bundle`).                     |
 | `coc-settings.json` | coc.nvim LSP config, symlinked to `~/.vim/coc-settings.json`.  |
+| `ghostty/config`    | Ghostty terminal config, symlinked to `~/.config/ghostty/config`. |
 | `fonts/`            | Vendored font files, copied into `~/Library/Fonts`.            |
 | `bin/`              | Dotfiles symlinked into `$HOME` (see below).                   |
 | `README.md`         | Human setup instructions.                                      |
 
-Files in `bin/` are **symlinked** into `$HOME` by `bootstrap.sh`
-(`.zshrc`, `.gitconfig`, `.gitignore_global`, `.tmux.conf`, `.vimrc`, `.ideavimrc`).
-Editing the repo file edits the live config, and vice versa.
+Files in `bin/` are symlinked into `$HOME` by `bootstrap.sh`
+(`.zshrc`, `.p10k.zsh`, `.gitconfig`, `.gitignore_global`, `.tmux.conf`, `.vimrc`,
+`.ideavimrc`). Editing the repo file edits the live config, and vice versa.
 
 ## Conventions
 
-- **Shell scripts are POSIX `sh`** (`#!/bin/sh`), not bash. Don't use bashisms.
+- Shell scripts are POSIX `sh` (`#!/bin/sh`), not bash. Don't use bashisms.
 - Reference repo paths via the `DOTFILES="$HOME/dotfiles"` variable and absolute
   paths — never rely on the current working directory.
 - New dotfiles go in `bin/` and must be added to the symlink block in
   `bootstrap.sh`. New fonts go in `fonts/` (already globbed by bootstrap).
 - New system preferences go in `macos.sh`, grouped by the existing section
-  headers, and must stay **idempotent** (safe to run repeatedly).
+  headers, and must stay idempotent (safe to run repeatedly).
 - `bootstrap.sh` uses `set -e`; guard commands that may exit non-zero on a
   second run (e.g. `asdf plugin add ... || true`).
 
 ## Gotchas
 
-- **asdf 0.16+** (the Go rewrite, what Homebrew installs) removed `asdf.sh` and
+- asdf 0.16+ (the Go rewrite, what Homebrew installs) removed `asdf.sh` and
   `asdf global`. `.zshrc` adds `$ASDF_DATA_DIR/shims` to `PATH`; bootstrap uses
   `asdf set -u`. Don't reintroduce `source .../asdf.sh`.
 - `.zshrc` auto-launches `tmux` on shell start, so never `source ~/.zshrc` from
