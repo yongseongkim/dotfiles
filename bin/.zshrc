@@ -15,6 +15,7 @@ export PATH=/opt/homebrew/bin:$PATH
 export PATH="$HOME/.local/bin:$PATH"
 
 eval "$(zoxide init zsh)"
+command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -23,6 +24,12 @@ if [ -d "$HOME/Library/Android/sdk" ]; then
     export ANDROID_HOME="$HOME/Library/Android/sdk"
     export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
     alias adbshot="adb shell screencap -p | perl -pe 's/\x0D\x0D\x0A/\x0A/g' > screen.png"
+fi
+
+# Java: Corretto 17 (only if installed)
+if [ -d "$HOME/Library/Java/JavaVirtualMachines/corretto-17.0.10/Contents/Home" ]; then
+    export JAVA_HOME="$HOME/Library/Java/JavaVirtualMachines/corretto-17.0.10/Contents/Home"
+    export PATH="$JAVA_HOME/bin:$PATH"
 fi
 
 lg()
