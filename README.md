@@ -1,7 +1,7 @@
 # dotfiles
 
-Personal macOS (Apple Silicon) setup: Homebrew packages, shell, vim, fonts, and
-system preferences — all driven by `bootstrap.sh`.
+Personal macOS (Apple Silicon) setup: Homebrew packages, shell, vim/neovim,
+fonts, and system preferences — all driven by `bootstrap.sh`.
 
 ## Setup
 
@@ -23,7 +23,9 @@ system preferences — all driven by `bootstrap.sh`.
 - Symlinks the dotfiles in [`bin/`](bin) into `$HOME` (`.zshrc`, `.p10k.zsh`,
   `.gitconfig`, `.gitignore_global`, `.tmux.conf`, `.vimrc`, `.ideavimrc`) and
   the Ghostty config into `~/.config/ghostty/config`.
-- Installs vim-plug, vim plugins, and coc.nvim settings.
+- Installs vim-plug and vim plugins.
+- Symlinks the LazyVim (Neovim) config in [`nvim/`](nvim) to `~/.config/nvim`
+  (an existing real config directory is backed up to `~/.config/nvim.bak`).
 - Copies fonts from [`fonts/`](fonts) into `~/Library/Fonts`.
 - Installs Node via asdf.
 - Applies macOS system preferences via [`macos.sh`](macos.sh).
@@ -35,7 +37,7 @@ system preferences — all driven by `bootstrap.sh`.
 | `bootstrap.sh`      | One-shot machine setup.                             |
 | `macos.sh`          | macOS defaults: keyboard, trackpad, dock, typing.  |
 | `Brewfile`          | Homebrew formulae and casks.                        |
-| `coc-settings.json` | coc.nvim LSP configuration.                         |
+| `nvim/`             | LazyVim (Neovim) config (symlinked to `~/.config/nvim`). |
 | `ghostty/`          | Ghostty terminal config (symlinked to `~/.config`).|
 | `fonts/`            | Vendored fonts.                                     |
 | `bin/`              | Dotfiles symlinked into `$HOME`.                    |
