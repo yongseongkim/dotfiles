@@ -46,10 +46,9 @@ git config --global core.excludesfile "$DOTFILES/bin/.gitignore_global"
 mkdir -p "$HOME/.config/ghostty"
 ln -nfs "$DOTFILES/ghostty/config" "$HOME/.config/ghostty/config"
 
-# Vim: plugin manager + plugins + coc settings
+# Vim: plugin manager + plugins
 curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
 	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-ln -nfs "$DOTFILES/coc-settings.json" "$HOME/.vim/coc-settings.json"
 vim +'PlugInstall --sync' +qa
 
 # Neovim: LazyVim config symlinked to ~/.config/nvim (existing real dir backed up)
