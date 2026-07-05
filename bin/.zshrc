@@ -32,13 +32,6 @@ if [ -d "$HOME/Library/Java/JavaVirtualMachines/corretto-17.0.10/Contents/Home" 
     export PATH="$JAVA_HOME/bin:$PATH"
 fi
 
-# VCNC tada (only on the work machine)
-if [ -d "$HOME/Documents/workspace.nosync/tada-server" ]; then
-    export VCNC_TADA_SERVER_DIR_FOR_PROTOCOL="$HOME/Documents/workspace.nosync/tada-server"
-    alias tdsbp="cd $VCNC_TADA_SERVER_DIR_FOR_PROTOCOL; ./gradlew :protocol:build"
-    export VCNC_DESIGN_TADA_PATH="$HOME/Google Drive/Shared drives/VCNC/Product Design팀/Development UI Assets/"
-fi
-
 lg()
 {
     export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
