@@ -27,6 +27,11 @@ brew update
 brew bundle --file="$DOTFILES/Brewfile"
 brew cleanup
 
+# Claude Code (native install to ~/.local/bin; self-updates, so not in Brewfile)
+if [ ! -x "$HOME/.local/bin/claude" ]; then
+	curl -fsSL https://claude.ai/install.sh | bash
+fi
+
 # Install oh-my-zsh (unattended: don't switch shell, don't start zsh, keep our .zshrc)
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
 	RUNZSH=no CHSH=no KEEP_ZSHRC=yes \
