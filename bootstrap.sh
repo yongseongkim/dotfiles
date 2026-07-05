@@ -52,6 +52,13 @@ curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
 ln -nfs "$DOTFILES/coc-settings.json" "$HOME/.vim/coc-settings.json"
 vim +'PlugInstall --sync' +qa
 
+# Neovim: LazyVim config symlinked to ~/.config/nvim (existing real dir backed up)
+mkdir -p "$HOME/.config"
+if [ -e "$HOME/.config/nvim" ] && [ ! -L "$HOME/.config/nvim" ]; then
+	mv "$HOME/.config/nvim" "$HOME/.config/nvim.bak"
+fi
+ln -nfs "$DOTFILES/nvim" "$HOME/.config/nvim"
+
 # Install fonts
 mkdir -p "$HOME/Library/Fonts"
 cp "$DOTFILES"/fonts/*.ttc "$HOME/Library/Fonts/"
