@@ -43,5 +43,5 @@ cask 'aws-vault-binary'
 cask 'gcloud-cli'
 
 # AI coding agents
-cask 'claude-code'
+# claude-code is installed natively (curl -fsSL https://claude.ai/install.sh | bash), self-updates.
 cask 'codex'
