@@ -1,50 +1,42 @@
 # dotfiles
 
-Personal macOS (Apple Silicon) setup: Homebrew packages, shell, vim/neovim,
-fonts, and system preferences — all driven by `bootstrap.sh`.
+Personal macOS (Apple Silicon) setup — Homebrew packages, shell, vim/neovim,
+fonts, and system preferences, all driven by `bootstrap.sh`.
 
 ## Setup
 
-1. Install Xcode Command Line Tools (bootstrap will prompt if missing).
-2. Clone this repo to `~/dotfiles`.
-3. Run it:
+1. Clone this repo to `~/dotfiles` (bootstrap prompts to install the Xcode
+   Command Line Tools if they're missing).
+2. Run it:
    ```sh
-   chmod +x ~/dotfiles/bootstrap.sh
    ~/dotfiles/bootstrap.sh
    ```
-4. Open a new terminal (or `exec zsh`) to load the shell.
-5. Launch Ghostty — its config (font Tab0 Mono K) is symlinked from
-   [`ghostty/config`](ghostty/config), so no manual setup is needed.
+3. Open a new terminal (or `exec zsh`) to load the shell. Ghostty picks up its
+   symlinked config automatically.
 
 ## What bootstrap does
 
-- Installs Homebrew and everything in [`Brewfile`](Brewfile) via `brew bundle`.
-- Installs oh-my-zsh (unattended).
-- Symlinks the dotfiles in [`bin/`](bin) into `$HOME` (`.zshrc`, `.p10k.zsh`,
-  `.gitconfig`, `.gitignore_global`, `.tmux.conf`, `.vimrc`, `.ideavimrc`) and
-  the Ghostty config into `~/.config/ghostty/config`.
-- Installs vim-plug and vim plugins.
-- Symlinks the LazyVim (Neovim) config in [`nvim/`](nvim) to `~/.config/nvim`
-  (an existing real config directory is backed up to `~/.config/nvim.bak`).
-- Copies fonts from [`fonts/`](fonts) into `~/Library/Fonts`.
-- Installs Node via asdf.
-- Applies macOS system preferences via [`macos.sh`](macos.sh).
+- Installs Homebrew packages from [`Brewfile`](Brewfile), oh-my-zsh, and
+  Claude Code.
+- Symlinks [`bin/`](bin) dotfiles into `$HOME` and the [`ghostty/`](ghostty)
+  config into `~/.config`.
+- Symlinks the LazyVim config ([`nvim/`](nvim)) to `~/.config/nvim` (an existing
+  real config is backed up to `nvim.bak`) and installs vim-plug for vim.
+- Copies [`fonts/`](fonts) into `~/Library/Fonts`.
+- Installs Node and Python via asdf (Python also provides `aws-gate`).
+- Applies macOS preferences via [`macos.sh`](macos.sh) — re-runnable; some
+  settings need a logout/restart to take effect.
 
 ## Layout
 
-| Path                | Purpose                                            |
-|---------------------|----------------------------------------------------|
-| `bootstrap.sh`      | One-shot machine setup.                             |
-| `macos.sh`          | macOS defaults: keyboard, trackpad, dock, typing.  |
-| `Brewfile`          | Homebrew formulae and casks.                        |
-| `nvim/`             | LazyVim (Neovim) config (symlinked to `~/.config/nvim`). |
-| `ghostty/`          | Ghostty terminal config (symlinked to `~/.config`).|
-| `fonts/`            | Vendored fonts.                                     |
-| `bin/`              | Dotfiles symlinked into `$HOME`.                    |
-
-## Notes
-
-- macOS preferences can be re-applied any time with `sh macos.sh`.
-- Some macOS settings need a logout/restart to take full effect.
+| Path           | Purpose                                            |
+|----------------|----------------------------------------------------|
+| `bootstrap.sh` | One-shot machine setup.                            |
+| `macos.sh`     | macOS defaults (keyboard, trackpad, dock, typing). |
+| `Brewfile`     | Homebrew formulae and casks.                       |
+| `nvim/`        | LazyVim config → `~/.config/nvim`.                 |
+| `ghostty/`     | Ghostty config → `~/.config/ghostty`.              |
+| `fonts/`       | Vendored fonts.                                    |
+| `bin/`         | Dotfiles symlinked into `$HOME`.                   |
 
 For agent/automation guidance, see [`AGENTS.md`](AGENTS.md).
