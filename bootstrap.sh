@@ -72,6 +72,15 @@ asdf plugin add nodejs || true
 asdf install nodejs latest:18
 asdf set -u nodejs "$(asdf latest nodejs 18)"
 
+# Python via asdf. Also installs aws-gate: an AWS SSM CLI that's a pip package
+# pinned to old deps (cffi 1.15.1), so it only builds on Python 3.10 — which is
+# why it can't be a Homebrew formula (brew forces its own newer Python).
+asdf plugin add python || true
+asdf install python latest:3.10
+asdf set -u python "$(asdf latest python 3.10)"
+python -m pip install aws-gate
+asdf reshim python
+
 # macOS system preferences (keyboard, trackpad, dock, typing)
 sh "$DOTFILES/macos.sh"
 

@@ -43,6 +43,9 @@ Files in `bin/` are symlinked into `$HOME` by `bootstrap.sh`
 - asdf 0.16+ (the Go rewrite, what Homebrew installs) removed `asdf.sh` and
   `asdf global`. `.zshrc` adds `$ASDF_DATA_DIR/shims` to `PATH`; bootstrap uses
   `asdf set -u`. Don't reintroduce `source .../asdf.sh`.
+- `aws-gate` is a pip tool on asdf's Python 3.10 (installed by `bootstrap.sh`),
+  not a Homebrew formula: its pinned `cffi` only builds on 3.10 and brew forces a
+  newer Python. Keep it on asdf; don't move it into the Brewfile.
 - `.zshrc` auto-launches `tmux` on shell start, so never `source ~/.zshrc` from
   inside a script — it will hang.
 - The `[maintenance]` repo path in `bin/.gitconfig` is a machine-local absolute
