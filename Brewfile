@@ -1,4 +1,9 @@
 # dotfiles/Brewfile
+
+# Taps
+tap 'hashicorp/tap'
+tap 'tw93/tap'
+
 brew 'wget'
 brew 'fzf'
 brew 'gh'
@@ -7,6 +12,7 @@ brew 'gradle'
 brew 'protobuf'
 brew 'lazygit'
 brew 'lazyjj'
+brew 'tw93/tap/mole'
 brew 'tmux'
 brew 'neovim'
 brew 'asdf'
@@ -24,6 +30,7 @@ brew 'awscli'
 brew 'oci-cli'
 brew 'gemini-cli'
 brew 'googleworkspace-cli'
+brew 'hashicorp/tap/terraform'
 
 # Applications
 cask_args appdir: '/Applications'
