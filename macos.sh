@@ -44,6 +44,19 @@ defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock tilesize -int 64
 defaults write com.apple.dock show-recents -bool false
 
+# Dock contents: drop everything macOS pins by default and keep only these.
+# Re-running resets the Dock to exactly this list.
+dock_add() {
+	[ -e "$1" ] || return 0
+	defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$1</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+}
+
+defaults write com.apple.dock persistent-apps -array
+dock_add "/Applications/Ghostty.app"
+dock_add "/Applications/Google Chrome.app"
+dock_add "/Applications/Slack.app"
+dock_add "/Applications/Visual Studio Code.app"
+
 ###############################################################################
 # Typing (turn off "smart" substitutions that get in the way of code)        #
 ###############################################################################

@@ -2,7 +2,7 @@
     name = yongseongkim
     email = yongseongkimm@gmail.com
 [core]
-	excludesfile = /Users/yongseongkim/dotfiles/bin/.gitignore_global
+	excludesfile = ~/dotfiles/bin/.gitignore_global
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =

@@ -23,6 +23,13 @@ elif [ -x /usr/local/bin/brew ]; then
 	eval "$(/usr/local/bin/brew shellenv)"
 fi
 
+# Homebrew 6 won't load formulae from third-party taps until they are trusted.
+# xen0l/taps is dead weight now that aws-gate comes from pip (below).
+brew untap xen0l/taps >/dev/null 2>&1 || true
+if brew trust --help >/dev/null 2>&1; then
+	brew trust --tap hashicorp/tap tw93/tap
+fi
+
 brew update
 brew bundle --file="$DOTFILES/Brewfile"
 brew cleanup
@@ -45,7 +52,6 @@ ln -nfs "$DOTFILES/bin/.p10k.zsh"   "$HOME/.p10k.zsh"
 ln -nfs "$DOTFILES/bin/.tmux.conf"  "$HOME/.tmux.conf"
 ln -nfs "$DOTFILES/bin/.vimrc"      "$HOME/.vimrc"
 ln -nfs "$DOTFILES/bin/.ideavimrc"  "$HOME/.ideavimrc"
-git config --global core.excludesfile "$DOTFILES/bin/.gitignore_global"
 
 # Ghostty terminal config
 mkdir -p "$HOME/.config/ghostty"
@@ -65,7 +71,14 @@ ln -nfs "$DOTFILES/nvim" "$HOME/.config/nvim"
 
 # Install fonts
 mkdir -p "$HOME/Library/Fonts"
-cp "$DOTFILES"/fonts/*.ttc "$HOME/Library/Fonts/"
+for f in "$DOTFILES"/fonts/*; do
+	[ -f "$f" ] || continue
+	cp "$f" "$HOME/Library/Fonts/"
+done
+
+# asdf tools live behind shims, which .zshrc only sets up for interactive shells.
+export ASDF_DATA_DIR="${ASDF_DATA_DIR:-$HOME/.asdf}"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 # Node via asdf
 asdf plugin add nodejs || true
@@ -80,6 +93,16 @@ asdf install python latest:3.10
 asdf set -u python "$(asdf latest python 3.10)"
 python -m pip install aws-gate
 asdf reshim python
+
+# Neovim plugins (mason needs node, so this runs after asdf). The install pass
+# overwrites lazy-lock.json, so put the pinned one back and check it out.
+nvim_lock="$DOTFILES/nvim/lazy-lock.json"
+nvim_lock_backup="$(mktemp)"
+cp "$nvim_lock" "$nvim_lock_backup"
+nvim --headless "+Lazy! install" +qa
+cp "$nvim_lock_backup" "$nvim_lock"
+rm -f "$nvim_lock_backup"
+nvim --headless "+Lazy! restore" +qa
 
 # macOS system preferences (keyboard, trackpad, dock, typing)
 sh "$DOTFILES/macos.sh"
