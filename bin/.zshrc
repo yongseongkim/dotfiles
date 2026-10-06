@@ -46,8 +46,7 @@ lg()
 
 alias disktop10="du -shx * | sort -rh | head -10"
 alias cl="claude"
-alias clz="claude --settings ~/.claude/settings-glm.json"
-alias csz="cs -p 'claude --settings ~/.claude/settings-glm.json'"
+alias homelab-db='ssh -N -o ExitOnForwardFailure=yes -L 15432:10.43.166.166:5432 homelab'
 
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
