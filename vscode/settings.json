@@ -1,0 +1,19 @@
+{
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "explorer.confirmPasteNative": false,
+    "editor.fontFamily": "Tab0 Mono K",
+    "editor.fontLigatures": false,
+    "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim"
+}

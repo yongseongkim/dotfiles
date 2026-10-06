@@ -1,0 +1,19 @@
+git:
+  autoFetch: false
+  fetchAll: false
+
+  log:
+    showGraph: never
+    showWholeGraph: false
+    order: date-order
+
+  branchLogCmd: git log --max-count=100 --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
+  allBranchesLogCmds:
+    - git log --max-count=100 --color=always --abbrev-commit --decorate --date=relative --pretty=medium --all
+
+refresher:
+  refreshInterval: 60
+  fetchInterval: 0
+
+gui:
+  statusPanelView: dashboard
